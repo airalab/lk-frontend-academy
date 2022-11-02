@@ -6,7 +6,7 @@
       </router-link>
       <nav id="nav" class="nav header__section">
         <a class="nav__link" href="https://robonomics.academy/" target="_blank">
-          Online Robonomics school 2022
+          Robonomics Academy -> Introduction Course
         </a>
         <router-link
           v-if="type === 'admin'"

@@ -21,11 +21,13 @@
     </div>
     <div class="lesson">
       <h4>Lesson2</h4>
-      <summary :class="[passed(lesson2, 10) ? 'color-green' : 'color-orange']">
-        passed: {{ passed(lesson2, 10) }}
+      <summary
+        :class="[passed(lesson2.list, 10) ? 'color-green' : 'color-orange']"
+      >
+        passed: {{ passed(lesson2.list, 10) }} | attempts: {{ lesson2.count }}
       </summary>
-      <template v-if="lesson2.length">
-        <div v-for="(item, k) in lesson2" :key="k">
+      <template v-if="lesson2.list.length">
+        <div v-for="(item, k) in lesson2.list" :key="k">
           <a :href="link(item.block, item.index)" target="_blank"
             >view extrinsic</a
           >
@@ -55,11 +57,13 @@
     </div>
     <div class="lesson">
       <h4>Lesson4</h4>
-      <summary :class="[passed(lesson4, 7) ? 'color-green' : 'color-orange']">
-        passed: {{ passed(lesson4, 7) }}
+      <summary
+        :class="[passed(lesson4.list, 7) ? 'color-green' : 'color-orange']"
+      >
+        passed: {{ passed(lesson4.list, 7) }} | attempts: {{ lesson4.count }}
       </summary>
-      <template v-if="lesson4.length">
-        <div v-for="(item, k) in lesson4" :key="k">
+      <template v-if="lesson4.list.length">
+        <div v-for="(item, k) in lesson4.list" :key="k">
           <a :href="link(item.block, item.index)" target="_blank"
             >view extrinsic</a
           >
@@ -92,9 +96,9 @@ export default {
   data() {
     return {
       lesson1: [],
-      lesson2: [],
+      lesson2: { list: [], count: 0 },
       lesson3: [],
-      lesson4: [],
+      lesson4: { list: [], count: 0 },
       lesson5: null
     };
   },
