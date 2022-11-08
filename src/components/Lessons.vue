@@ -35,7 +35,12 @@
           {{ Math.ceil((item.corrects * 100) / 17) }}%
           <div v-if="item.corrects >= 15">
             Поздравляем, вы получаете награду для 2 урока, обратитесь в чат
-            Дискорд
+            <a
+              href="https://discord.com/channels/803947358492557312/803947358492557315"
+              target="_blank"
+            >
+              Дискорд
+            </a>
           </div>
           <div v-else>К сожалению, вы не получаете XRT награду для 2 урока</div>
           <pre>{{ JSON.parse(item.data).data }}</pre>
@@ -77,7 +82,12 @@
           {{ Math.ceil((item.corrects * 100) / 11) }}%
           <div v-if="item.corrects >= 10">
             Поздравляем, вы получаете награду для 4 урока, обратитесь в чат
-            Дискорд
+            <a
+              href="https://discord.com/channels/803947358492557312/803947358492557315"
+              target="_blank"
+            >
+              Дискорд
+            </a>
           </div>
           <div v-else>К сожалению, вы не получаете XRT награду для 4 урока</div>
           <pre>{{ JSON.parse(item.data).data }}</pre>
