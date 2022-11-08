@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="lesson">
-      <h4>Lesson1</h4>
+      <h4>Lesson 1</h4>
       <summary
         :class="[
           (lesson1.length > 0 ? true : false) ? 'color-green' : 'color-orange'
@@ -20,7 +20,7 @@
       </template>
     </div>
     <div class="lesson">
-      <h4>Lesson2</h4>
+      <h4>Lesson 2</h4>
       <summary
         :class="[passed(lesson2.list, 10) ? 'color-green' : 'color-orange']"
       >
@@ -31,13 +31,19 @@
           <a :href="link(item.block, item.index)" target="_blank"
             >view extrinsic</a
           >
-          | {{ date(item.time) }} | corrcet:{{ item.corrects }}
+          | {{ date(item.time) }} | correct: {{ item.corrects }} |
+          {{ Math.ceil((item.corrects * 100) / 17) }}%
+          <div v-if="item.corrects >= 15">
+            Поздравляем, вы получаете награду для 2 урока, обратитесь в чат
+            Дискорд
+          </div>
+          <div v-else>К сожалению, вы не получаете XRT награду для 2 урока</div>
           <pre>{{ JSON.parse(item.data).data }}</pre>
         </div>
       </template>
     </div>
     <div class="lesson">
-      <h4>Lesson3</h4>
+      <h4>Lesson 3</h4>
       <summary
         :class="[
           (lesson3.length > 0 ? true : false) ? 'color-green' : 'color-orange'
@@ -56,7 +62,7 @@
       </template>
     </div>
     <div class="lesson">
-      <h4>Lesson4</h4>
+      <h4>Lesson 4</h4>
       <summary
         :class="[passed(lesson4.list, 7) ? 'color-green' : 'color-orange']"
       >
@@ -67,13 +73,19 @@
           <a :href="link(item.block, item.index)" target="_blank"
             >view extrinsic</a
           >
-          | {{ date(item.time) }} | corrcet:{{ item.corrects }}
+          | {{ date(item.time) }} | correct: {{ item.corrects }} |
+          {{ Math.ceil((item.corrects * 100) / 11) }}%
+          <div v-if="item.corrects >= 10">
+            Поздравляем, вы получаете награду для 4 урока, обратитесь в чат
+            Дискорд
+          </div>
+          <div v-else>К сожалению, вы не получаете XRT награду для 4 урока</div>
           <pre>{{ JSON.parse(item.data).data }}</pre>
         </div>
       </template>
     </div>
     <div class="lesson">
-      <h4>Lesson5</h4>
+      <h4>Lesson 5</h4>
       <summary
         :class="[
           Boolean(lesson5 && lesson5.ledger && lesson5.devices)
