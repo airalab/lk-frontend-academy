@@ -32,7 +32,7 @@ export default {
     },
     user: {
       bonus: {
-        test: "Congratulations, you get a reward for Lesson 5, contact us on the {link}!",
+        text: "Congratulations, you get a reward for Lesson 5, contact us on the {link}!",
         link: "Discord chat",
         error: "Unfortunately, you do not get the XRT reward for Lesson 5."
       },
@@ -82,7 +82,7 @@ export default {
     },
     user: {
       bonus: {
-        test: "Поздравляем, вы получаете награду для 5 урока, обратитесь в {link}!",
+        text: "Поздравляем, вы получаете награду для 5 урока, обратитесь в {link}!",
         link: "Discord чат",
         error: "К сожалению, вы не получаете XRT награду для 5 урока."
       },

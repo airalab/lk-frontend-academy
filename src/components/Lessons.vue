@@ -161,11 +161,8 @@ export default {
     },
     isBonus() {
       if (
-        this.lesson1.length > 0 &&
         this.passed(this.lesson2.list, 15) &&
-        this.lesson3.length > 0 &&
-        this.passed(this.lesson4.list, 10) &&
-        Boolean(this.lesson5 && this.lesson5.ledger && this.lesson5.devices)
+        this.passed(this.lesson4.list, 10)
       ) {
         return true;
       }
