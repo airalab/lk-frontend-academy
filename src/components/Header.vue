@@ -6,17 +6,19 @@
       </router-link>
       <nav id="nav" class="nav header__section">
         <a class="nav__link" href="https://robonomics.academy/" target="_blank">
-          Robonomics Academy -> Introduction Course
+          {{ $t("header.title") }}
         </a>
         <router-link
           v-if="type === 'admin'"
           class="nav__link"
           :to="{ name: 'users' }"
-          >Users</router-link
         >
+          {{ $t("header.users") }}
+        </router-link>
       </nav>
 
       <div class="header-right expand header__section" tabindex="0">
+        <Languages />
         <Account
           v-if="isReady"
           @login="$emit('login')"
@@ -32,10 +34,11 @@
 import AccountManager from "../accountManagerUi";
 import robonomics from "../robonomics";
 import Account from "./Account.vue";
+import Languages from "./Languages.vue";
 
 export default {
   emits: ["login", "logout"],
-  components: { Account },
+  components: { Account, Languages },
   data() {
     return {
       isReady: false,

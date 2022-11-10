@@ -1,14 +1,14 @@
 <template>
   <section>
-    <h2>Lessons</h2>
+    <h2>{{ $t("users.title") }}</h2>
     <table>
       <tr>
-        <th>account</th>
-        <th>lesson1</th>
-        <th>lesson2</th>
-        <th>lesson3</th>
-        <th>lesson4</th>
-        <th>lesson5</th>
+        <th style="width: 200px">{{ $t("users.table.header.account") }}</th>
+        <th>{{ $t("users.table.header.lesson1") }}</th>
+        <th>{{ $t("users.table.header.lesson2") }}</th>
+        <th>{{ $t("users.table.header.lesson3") }}</th>
+        <th>{{ $t("users.table.header.lesson4") }}</th>
+        <th>{{ $t("users.table.header.lesson5") }}</th>
       </tr>
       <tr
         v-for="(item, k) in users"
@@ -77,11 +77,18 @@ export default {
 table {
   width: 100%;
 }
+table th {
+  padding: 5px;
+  font-size: 14px;
+}
 table td {
   padding: 5px;
+  text-align: center;
+  border-right: 1px solid #eee;
 }
 table td a {
   color: var(--color-white);
+  font-size: 17px;
 }
 table td a:hover {
   color: var(--color-brown) !important;
@@ -92,13 +99,23 @@ table td a:hover {
 table td a:hover {
   color: var(--color-white) !important;
 }
-.red {
+
+table tr.red {
   background-color: var(--color-orange);
 }
-.warn {
+table tr.warn {
   background-color: var(--color-yellow);
 }
-.success {
+table tr.success {
   background-color: var(--color-green);
+}
+table tr.red:hover {
+  background-color: #d56e3e;
+}
+table tr.warn:hover {
+  background-color: #dbce88;
+}
+table tr.success:hover {
+  background-color: #93c12c;
 }
 </style>

@@ -3,7 +3,7 @@
     <Header @login="isAuth = true" @logout="isAuth = false" />
     <router-view v-if="isAuth" />
     <section v-else>
-      <div class="layout">You need to login</div>
+      <div class="layout">{{ $t("app.auth.error") }}</div>
     </section>
   </div>
 </template>

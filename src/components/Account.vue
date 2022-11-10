@@ -9,13 +9,16 @@
         {{ account.meta.isTesting ? "[ dev ]" : "" }} {{ account.meta.name }}
       </option>
     </select>
-    <button v-if="!isAuth" @click="auth">login</button>
+    <button v-if="!isAuth" @click="auth">{{ $t("account.login") }}</button>
   </template>
   <span v-else>
-    Create or activate your account in
-    <a href="https://polkadot.js.org/extension/" target="_blank"
-      >Polkadot.js extension</a
-    >
+    <i18n-t keypath="account.create.text">
+      <template #link>
+        <a href="https://polkadot.js.org/extension/" target="_blank">
+          {{ $t("account.create.link") }}
+        </a>
+      </template>
+    </i18n-t>
   </span>
 </template>
 
@@ -70,7 +73,6 @@ export default {
         address
       );
       const res = await auth(address, signature);
-      console.log(res);
       if (res.isValid) {
         this.isAuth = true;
         this.type = res.type;

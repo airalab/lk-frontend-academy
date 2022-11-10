@@ -1,101 +1,101 @@
 <template>
   <section>
+    <summary v-if="isBonus" class="bonus color-green">
+      <i18n-t keypath="user.bonus.text">
+        <template #link>
+          <a
+            href="https://discord.com/channels/803947358492557312/803947358492557315"
+            target="_blank"
+          >
+            {{ $t("user.bonus.link") }}
+          </a>
+        </template>
+      </i18n-t>
+    </summary>
+    <summary v-else class="bonus color-orange">
+      {{ $t("user.bonus.error") }}
+    </summary>
+
     <div class="lesson">
-      <h4>Lesson 1</h4>
+      <h4>{{ $t("user.lesson1") }}</h4>
       <summary
         :class="[
           (lesson1.length > 0 ? true : false) ? 'color-green' : 'color-orange'
         ]"
       >
-        passed: {{ lesson1.length > 0 ? true : false }}
+        {{ lesson1.length > 0 ? $t("user.done") : $t("user.notDone") }}
       </summary>
       <template v-if="lesson1.length">
         <div v-for="(item, k) in lesson1" :key="k">
-          <a :href="link(item.block, item.index)" target="_blank"
-            >view extrinsic</a
-          >
+          <a :href="link(item.block, item.index)" target="_blank">
+            {{ $t("user.extrinsic") }}
+          </a>
           | {{ date(item.time) }} |
           {{ JSON.parse(item.data).blackmirror }}
         </div>
       </template>
     </div>
     <div class="lesson">
-      <h4>Lesson 2</h4>
+      <h4>{{ $t("user.lesson2") }}</h4>
       <summary
         :class="[passed(lesson2.list, 10) ? 'color-green' : 'color-orange']"
       >
-        passed: {{ passed(lesson2.list, 10) }} | attempts: {{ lesson2.count }}
+        {{ passed(lesson2.list, 10) ? $t("user.done") : $t("user.notDone") }} |
+        {{ $t("user.attempts") }}:
+        {{ lesson2.count }}
       </summary>
       <template v-if="lesson2.list.length">
         <div v-for="(item, k) in lesson2.list" :key="k">
-          <a :href="link(item.block, item.index)" target="_blank"
-            >view extrinsic</a
-          >
-          | {{ date(item.time) }} | correct: {{ item.corrects }} |
-          {{ Math.ceil((item.corrects * 100) / 17) }}%
-          <div v-if="item.corrects >= 15">
-            Поздравляем, вы получаете награду для 2 урока, обратитесь в чат
-            <a
-              href="https://discord.com/channels/803947358492557312/803947358492557315"
-              target="_blank"
-            >
-              Дискорд
-            </a>
-          </div>
-          <div v-else>К сожалению, вы не получаете XRT награду для 2 урока</div>
+          <a :href="link(item.block, item.index)" target="_blank">
+            {{ $t("user.extrinsic") }}
+          </a>
+          | {{ date(item.time) }} | {{ $t("user.correct") }}:
+          {{ item.corrects }} | {{ Math.ceil((item.corrects * 100) / 17) }}%
           <pre>{{ JSON.parse(item.data).data }}</pre>
         </div>
       </template>
     </div>
     <div class="lesson">
-      <h4>Lesson 3</h4>
+      <h4>{{ $t("user.lesson3") }}</h4>
       <summary
         :class="[
           (lesson3.length > 0 ? true : false) ? 'color-green' : 'color-orange'
         ]"
       >
-        passed: {{ lesson3.length > 0 ? true : false }}
+        {{ lesson3.length > 0 ? $t("user.done") : $t("user.notDone") }}
       </summary>
       <template v-if="lesson3.length">
         <div v-for="(item, k) in lesson3" :key="k">
-          <a :href="link(item.block, item.index)" target="_blank"
-            >view extrinsic</a
-          >
+          <a :href="link(item.block, item.index)" target="_blank">
+            {{ $t("user.extrinsic") }}
+          </a>
           |
           {{ launch(item.data) }}
         </div>
       </template>
     </div>
     <div class="lesson">
-      <h4>Lesson 4</h4>
+      <h4>{{ $t("user.lesson4") }}</h4>
       <summary
         :class="[passed(lesson4.list, 7) ? 'color-green' : 'color-orange']"
       >
-        passed: {{ passed(lesson4.list, 7) }} | attempts: {{ lesson4.count }}
+        {{ passed(lesson4.list, 7) ? $t("user.done") : $t("user.notDone") }} |
+        {{ $t("user.attempts") }}:
+        {{ lesson4.count }}
       </summary>
       <template v-if="lesson4.list.length">
         <div v-for="(item, k) in lesson4.list" :key="k">
-          <a :href="link(item.block, item.index)" target="_blank"
-            >view extrinsic</a
-          >
-          | {{ date(item.time) }} | correct: {{ item.corrects }} |
-          {{ Math.ceil((item.corrects * 100) / 11) }}%
-          <div v-if="item.corrects >= 10">
-            Поздравляем, вы получаете награду для 4 урока, обратитесь в чат
-            <a
-              href="https://discord.com/channels/803947358492557312/803947358492557315"
-              target="_blank"
-            >
-              Дискорд
-            </a>
-          </div>
-          <div v-else>К сожалению, вы не получаете XRT награду для 4 урока</div>
+          <a :href="link(item.block, item.index)" target="_blank">
+            {{ $t("user.extrinsic") }}
+          </a>
+          | {{ date(item.time) }} | {{ $t("user.correct") }}:
+          {{ item.corrects }} | {{ Math.ceil((item.corrects * 100) / 11) }}%
           <pre>{{ JSON.parse(item.data).data }}</pre>
         </div>
       </template>
     </div>
     <div class="lesson">
-      <h4>Lesson 5</h4>
+      <h4>{{ $t("user.lesson5") }}</h4>
       <summary
         :class="[
           Boolean(lesson5 && lesson5.ledger && lesson5.devices)
@@ -103,8 +103,11 @@
             : 'color-orange'
         ]"
       >
-        passed:
-        {{ Boolean(lesson5 && lesson5.ledger && lesson5.devices) }}
+        {{
+          Boolean(lesson5 && lesson5.ledger && lesson5.devices)
+            ? $t("user.done")
+            : $t("user.notDone")
+        }}
       </summary>
     </div>
   </section>
@@ -155,6 +158,18 @@ export default {
           ? "on"
           : "off";
       };
+    },
+    isBonus() {
+      if (
+        this.lesson1.length > 0 &&
+        this.passed(this.lesson2.list, 15) &&
+        this.lesson3.length > 0 &&
+        this.passed(this.lesson4.list, 10) &&
+        Boolean(this.lesson5 && this.lesson5.ledger && this.lesson5.devices)
+      ) {
+        return true;
+      }
+      return false;
     }
   },
   methods: {
@@ -196,5 +211,8 @@ summary.color-green {
   margin: 20px 0;
   padding: 10px;
   border: 1px solid #534e4b;
+}
+.bonus {
+  margin: 20px 0;
 }
 </style>

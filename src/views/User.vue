@@ -1,7 +1,7 @@
 <template>
   <div class="lesson__tags">
     <div class="lessons__tags-container">
-      <div class="lesson__tags__tag">Account: {{ user }}</div>
+      <div class="lesson__tags__tag">{{ $t("app.account") }}: {{ user }}</div>
     </div>
   </div>
   <div class="layout">
