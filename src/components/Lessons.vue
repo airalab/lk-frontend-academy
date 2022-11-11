@@ -30,8 +30,8 @@
         <table>
           <thead>
             <tr>
-              <th>Extrinsic</th>
-              <th>Date</th>
+              <th style="width: 200px">Extrinsic</th>
+              <th style="width: 150px">Date</th>
               <th style="text-align: left">Text</th>
             </tr>
           </thead>
