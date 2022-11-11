@@ -16,21 +16,21 @@
         :class="{
           red:
             !item.lesson1 &&
-            !item.lesson2 &&
+            !item.lesson2.passed &&
             !item.lesson3 &&
-            !item.lesson4 &&
+            !item.lesson4.passed &&
             !item.lesson5,
           warn:
             item.lesson1 ||
-            item.lesson2 ||
+            item.lesson2.passed ||
             item.lesson3 ||
-            item.lesson4 ||
+            item.lesson4.passed ||
             item.lesson5,
           success:
             item.lesson1 &&
-            item.lesson2 &&
+            item.lesson2.passed &&
             item.lesson3 &&
-            item.lesson4 &&
+            item.lesson4.passed &&
             item.lesson5
         }"
       >
@@ -41,9 +41,19 @@
           >
         </td>
         <td>{{ item.lesson1 ? "+" : "-" }}</td>
-        <td>{{ item.lesson2 ? "+" : "-" }}</td>
+        <td>
+          {{ item.lesson2.passed ? "+" : "-" }}
+          <span v-if="item.lesson2.count > 0">
+            / {{ item.lesson2.count }}
+          </span>
+        </td>
         <td>{{ item.lesson3 ? "+" : "-" }}</td>
-        <td>{{ item.lesson4 ? "+" : "-" }}</td>
+        <td>
+          {{ item.lesson4.passed ? "+" : "-" }}
+          <span v-if="item.lesson4.count > 0">
+            / {{ item.lesson4.count }}
+          </span>
+        </td>
         <td>{{ item.lesson5 ? "+" : "-" }}</td>
       </tr>
     </table>
@@ -117,5 +127,8 @@ table tr.warn:hover {
 }
 table tr.success:hover {
   background-color: #93c12c;
+}
+span {
+  font-size: 10px;
 }
 </style>

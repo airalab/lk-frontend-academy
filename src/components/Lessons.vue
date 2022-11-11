@@ -26,13 +26,29 @@
         {{ lesson1.length > 0 ? $t("user.done") : $t("user.notDone") }}
       </summary>
       <template v-if="lesson1.length">
-        <div v-for="(item, k) in lesson1" :key="k">
-          <a :href="link(item.block, item.index)" target="_blank">
-            {{ $t("user.extrinsic") }}
-          </a>
-          | {{ date(item.time) }} |
-          {{ JSON.parse(item.data).blackmirror }}
-        </div>
+        <hr />
+        <table>
+          <thead>
+            <tr>
+              <th>Extrinsic</th>
+              <th>Date</th>
+              <th style="text-align: left">Text</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, k) in lesson1" :key="k">
+              <td>
+                <a :href="link(item.block, item.index)" target="_blank">
+                  {{ $t("user.extrinsic") }}
+                </a>
+              </td>
+              <td>{{ date(item.time) }}</td>
+              <td style="text-align: left">
+                {{ JSON.parse(item.data).blackmirror }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </template>
     </div>
     <div class="lesson">
@@ -44,15 +60,54 @@
         {{ $t("user.attempts") }}:
         {{ lesson2.count }}
       </summary>
+
       <template v-if="lesson2.list.length">
-        <div v-for="(item, k) in lesson2.list" :key="k">
-          <a :href="link(item.block, item.index)" target="_blank">
-            {{ $t("user.extrinsic") }}
-          </a>
-          | {{ date(item.time) }} | {{ $t("user.correct") }}:
-          {{ item.corrects }} | {{ Math.ceil((item.corrects * 100) / 17) }}%
-          <pre>{{ JSON.parse(item.data).data }}</pre>
-        </div>
+        <hr />
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 200px">Extrinsic</th>
+              <th style="width: 180px">Date</th>
+              <th style="width: 100px">{{ $t("user.correct") }}</th>
+              <th style="width: 100px">{{ $t("user.correct") }} %</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="(item, k) in lesson2.list" :key="k">
+              <tr>
+                <td>
+                  <a :href="link(item.block, item.index)" target="_blank">
+                    {{ $t("user.extrinsic") }}
+                  </a>
+                </td>
+                <td>{{ date(item.time) }}</td>
+                <td>{{ item.corrects }}</td>
+                <td>{{ Math.ceil((item.corrects * 100) / 17) }}%</td>
+                <td>
+                  <button
+                    @click="
+                      viewLesson2Index === k
+                        ? (viewLesson2Index = null)
+                        : (viewLesson2Index = k)
+                    "
+                    class="btn-preview"
+                  >
+                    <template v-if="viewLesson2Index !== k">show</template>
+                    <template v-else>hide</template>
+                  </button>
+                </td>
+              </tr>
+              <tr v-show="k === viewLesson2Index">
+                <td colspan="5">
+                  <pre>
+                    {{ JSON.parse(item.data).data }}
+                  </pre>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
       </template>
     </div>
     <div class="lesson">
@@ -65,13 +120,25 @@
         {{ lesson3.length > 0 ? $t("user.done") : $t("user.notDone") }}
       </summary>
       <template v-if="lesson3.length">
-        <div v-for="(item, k) in lesson3" :key="k">
-          <a :href="link(item.block, item.index)" target="_blank">
-            {{ $t("user.extrinsic") }}
-          </a>
-          |
-          {{ launch(item.data) }}
-        </div>
+        <hr />
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 200px">Extrinsic</th>
+              <th style="text-align: left">Text</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, k) in lesson3" :key="k">
+              <td>
+                <a :href="link(item.block, item.index)" target="_blank">
+                  {{ $t("user.extrinsic") }}
+                </a>
+              </td>
+              <td style="text-align: left">{{ launch(item.data) }}</td>
+            </tr>
+          </tbody>
+        </table>
       </template>
     </div>
     <div class="lesson">
@@ -83,15 +150,54 @@
         {{ $t("user.attempts") }}:
         {{ lesson4.count }}
       </summary>
+
       <template v-if="lesson4.list.length">
-        <div v-for="(item, k) in lesson4.list" :key="k">
-          <a :href="link(item.block, item.index)" target="_blank">
-            {{ $t("user.extrinsic") }}
-          </a>
-          | {{ date(item.time) }} | {{ $t("user.correct") }}:
-          {{ item.corrects }} | {{ Math.ceil((item.corrects * 100) / 11) }}%
-          <pre>{{ JSON.parse(item.data).data }}</pre>
-        </div>
+        <hr />
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 200px">Extrinsic</th>
+              <th style="width: 180px">Date</th>
+              <th style="width: 100px">{{ $t("user.correct") }}</th>
+              <th style="width: 100px">{{ $t("user.correct") }} %</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="(item, k) in lesson4.list" :key="k">
+              <tr>
+                <td>
+                  <a :href="link(item.block, item.index)" target="_blank">
+                    {{ $t("user.extrinsic") }}
+                  </a>
+                </td>
+                <td>{{ date(item.time) }}</td>
+                <td>{{ item.corrects }}</td>
+                <td>{{ Math.ceil((item.corrects * 100) / 17) }}%</td>
+                <td>
+                  <button
+                    @click="
+                      viewLesson4Index === k
+                        ? (viewLesson4Index = null)
+                        : (viewLesson4Index = k)
+                    "
+                    class="btn-preview"
+                  >
+                    <template v-if="viewLesson4Index !== k">show</template>
+                    <template v-else>hide</template>
+                  </button>
+                </td>
+              </tr>
+              <tr v-show="k === viewLesson4Index">
+                <td colspan="5">
+                  <pre>
+                    {{ JSON.parse(item.data).data }}
+                  </pre>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
       </template>
     </div>
     <div class="lesson">
@@ -124,7 +230,9 @@ export default {
       lesson2: { list: [], count: 0 },
       lesson3: [],
       lesson4: { list: [], count: 0 },
-      lesson5: null
+      lesson5: null,
+      viewLesson2Index: null,
+      viewLesson4Index: null
     };
   },
   created() {
@@ -161,8 +269,10 @@ export default {
     },
     isBonus() {
       if (
-        this.passed(this.lesson2.list, 15) &&
-        this.passed(this.lesson4.list, 10)
+        this.lesson2.list.length > 0 &&
+        this.lesson4.list.length > 0 &&
+        this.lesson2.list[this.lesson2.list.length - 1].corrects >= 15 &&
+        this.lesson4.list[this.lesson4.list.length - 1].corrects >= 10
       ) {
         return true;
       }
@@ -178,6 +288,8 @@ export default {
         this.lesson3 = result.lesson3;
         this.lesson4 = result.lesson4;
         this.lesson5 = result.lesson5;
+        this.viewLesson2Index = this.lesson2.count - 1;
+        this.viewLesson4Index = this.lesson4.count - 1;
       }
     }
   }
@@ -191,6 +303,7 @@ pre {
   border: 1px solid #534e4b;
   padding: 10px;
   font-size: 12px;
+  text-align: left;
 }
 summary {
   border-radius: var(--gap);
@@ -211,5 +324,30 @@ summary.color-green {
 }
 .bonus {
   margin: 20px 0;
+}
+.btn-preview {
+  padding: 2px 10px;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+}
+table th {
+  padding: 5px;
+  font-size: 14px;
+}
+table td {
+  padding: 5px;
+  text-align: center;
+  border-right: 1px solid #eee;
+}
+table tbody tr:hover {
+  background-color: #e9e9e9;
+}
+hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid #999999;
 }
 </style>
