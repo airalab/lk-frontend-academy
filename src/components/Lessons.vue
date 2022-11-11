@@ -173,7 +173,7 @@
                 </td>
                 <td>{{ date(item.time) }}</td>
                 <td>{{ item.corrects }}</td>
-                <td>{{ Math.ceil((item.corrects * 100) / 17) }}%</td>
+                <td>{{ Math.ceil((item.corrects * 100) / 11) }}%</td>
                 <td>
                   <button
                     @click="
